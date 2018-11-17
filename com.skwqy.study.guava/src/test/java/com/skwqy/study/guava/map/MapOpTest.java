@@ -6,6 +6,8 @@ import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Multimap;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 import java.util.Map;
@@ -17,7 +19,7 @@ import static org.junit.Assert.*;
  * @Created 2018 11 2018/11/17 10:51 AM
  */
 public class MapOpTest {
-
+    private static Logger LOG = LoggerFactory.getLogger(MapOpTest.class);
     @Test
     public void testBiMap() {
         BiMap<String, String> weekNameMap = HashBiMap.create();
@@ -29,8 +31,8 @@ public class MapOpTest {
         weekNameMap.put("星期六", "Saturday");
         weekNameMap.put("星期日", "Sunday");
 
-        System.out.println("星期日的英文名是: " + weekNameMap.get("星期日"));
-        System.out.println("Sunday的中文是: " + weekNameMap.inverse().get("Sunday"));
+        LOG.info("星期日的英文名是: {}", weekNameMap.get("星期日"));
+        LOG.info("Sunday的中文是: {}", weekNameMap.inverse().get("Sunday"));
     }
 
     @Test
@@ -52,11 +54,11 @@ public class MapOpTest {
 
         //遍历Mutlimap
         for (String value : myMultimap.values()) {
-            System.out.println(value);
+            LOG.info(value);
         }
         //遍历Mutlimap
         for (Map.Entry<String,String> entry : myMultimap.entries()) {
-            System.out.println(entry.getKey()+" : "+entry.getValue());
+            LOG.info(entry.getKey()+" : "+entry.getValue());
         }
 
         // Removing a single value
