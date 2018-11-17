@@ -1,8 +1,10 @@
 package com.skwqy.study.guava.string;
 
+import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -47,4 +49,16 @@ public class StringOpTest {
         }
     }
 
+    /**
+     * Map 二次join操作
+     *
+     */
+    @Test
+    public void testString2ndJoin(){
+        Map<String,String> values = new HashMap<>();
+        values.put("key1","value1");
+        values.put("key2","value2");
+        String result = Joiner.on(",").withKeyValueSeparator("=").join(values);
+        System.out.println(result);
+    }
 }
