@@ -15,12 +15,14 @@
   <modules>
 	 <module>com.skwqy.study.jdk</module>
    <module>com.skwqy.study.guava</module>
+   <module>com.skwqy.study.spring</module>
   </modules>
 
   <!-- 定义公共变量 -->  
-  <properties>    
+  <properties>
     <junit.version>4.9</junit.version>
     <guava.version>19.0</guava.version>
+    <springframework.version>5.1.2.RELEASE</springframework.version>
   </properties> 
 
   
@@ -29,6 +31,18 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${guava.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${springframework.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${springframework.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
