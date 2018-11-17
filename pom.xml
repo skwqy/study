@@ -23,6 +23,8 @@
     <junit.version>4.9</junit.version>
     <guava.version>19.0</guava.version>
     <springframework.version>5.1.2.RELEASE</springframework.version>
+    <slf4japi.version>1.7.25</slf4japi.version>
+    <logback.version>1.2.3</logback.version>
   </properties> 
 
   
@@ -44,6 +46,29 @@
       <artifactId>spring-context</artifactId>
       <version>${springframework.version}</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4japi.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4japi.version}</version>
+      <scope>test</scope>
+    </dependency>
+    -->
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

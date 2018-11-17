@@ -1,5 +1,7 @@
 package com.skwqy.study.spring.test.javaconfig;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -13,6 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class JavaConfig4UT {
     private static final String JAVA_CLASS_PATH = Thread.currentThread().getContextClassLoader().getResource("").getPath();
 
+    private static Logger LOG = LoggerFactory.getLogger(JavaConfig4UT.class);
     public static void main(String[] args) {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/spring.xml");
         INeAccess neAccess = applicationContext.getBean(INeAccess.class);
@@ -21,5 +24,6 @@ public class JavaConfig4UT {
         {
             System.out.println("is null ");
         }
+        LOG.info("Java config test is OK");
     }
 }
