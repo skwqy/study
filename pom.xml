@@ -16,6 +16,7 @@
 	 <module>com.skwqy.study.jdk</module>
    <module>com.skwqy.study.guava</module>
    <module>com.skwqy.study.spring</module>
+   <module>com.skwqy.study.reactor</module>
   </modules>
 
   <!-- 定义公共变量 -->  
