@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
@@ -69,6 +70,53 @@ public class FluxExampleTest {
         }).subscribe(System.out::print);
 
         Mono.fromSupplier(() -> "Supplier skwqy").subscribe(System.out::print);
+        Mono.justOrEmpty(Optional.of(",[justOrEmpty] Hello")).subscribe(System.out::print);
+        Mono.create(sink -> sink.success(", [create] hello")).subscribe(System.out::print);
+    }
+
+    /**
+     * ---------将当前流中的元素收集到集合中，并把集合对象作为流中的新元素----------
+     * 收集，返回结果：Flux<List<T>>
+     */
+    @Test
+    public void testBuffer() {
+        Flux.range(1, 100).buffer(20).subscribe(System.out::println);
+        // Until 收集直到条件达成，则组成一组
+        Flux.range(1, 10).bufferUntil(i -> i % 2 == 0).subscribe(System.out::println);
+        // While 只收集符合条件的元素
+        Flux.range(1, 10).bufferWhile(i -> i % 2 == 0).subscribe(System.out::println);
+
+    }
+
+    //收集， 返回结果： Flux<Flux<T>>
+    @Test
+    public void testWindow() {
+        Flux.range(1, 100).window(20).subscribe(System.out::println);
+    }
+
+    @Test
+    public void testFilter() {
+        // 过滤，只选择符合条件的元素
+        Flux.range(1, 10).filter(i -> i % 2 == 0).subscribe(System.out::println);
+    }
+
+    @Test
+    public void testZipWith() {
+        Flux.just("a", "b")
+                .zipWith(Flux.just("c", "d"))
+                .subscribe(System.out::println);
+        Flux.just("a", "b")
+                .zipWith(Flux.just("c", "d"), (s1, s2) -> String.format("%s-%s", s1, s2))
+                .subscribe(System.out::println);
+    }
+
+
+    @Test
+    public void testTake() {
+        Flux.range(1, 1000).take(10).subscribe(System.out::println);
+        Flux.range(1, 1000).takeLast(10).subscribe(System.out::println);
+        Flux.range(1, 1000).takeWhile(i -> i < 10).subscribe(System.out::println);
+        Flux.range(1, 1000).takeUntil(i -> i == 10).subscribe(System.out::println);
     }
 
 }
