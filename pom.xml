@@ -13,10 +13,11 @@
   <url></url>
   
   <modules>
-	 <module>com.skwqy.study.jdk</module>
-   <module>com.skwqy.study.guava</module>
-   <module>com.skwqy.study.spring</module>
-   <module>com.skwqy.study.reactor</module>
+    <module>com.skwqy.study.jdk</module>
+    <module>com.skwqy.study.guava</module>
+    <module>com.skwqy.study.spring</module>
+    <module>com.skwqy.study.reactor</module>
+    <module>com.skwqy.study.pattern</module>
   </modules>
 
   <!-- 定义公共变量 -->  
@@ -28,7 +29,7 @@
     <logback.version>1.2.3</logback.version>
   </properties> 
 
-  
+
   <dependencies>
     <dependency>
       <groupId>com.google.guava</groupId>

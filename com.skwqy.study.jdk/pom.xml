@@ -18,14 +18,14 @@
     </build>
 
     <parent>
-    <groupId>com.skwqy.study</groupId>
-    <artifactId>skwqy-study-root</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>com.skwqy.study.jdk</artifactId>
-  <name>test for jdk</name>
-  <packaging>jar</packaging>
-  <description>test for jdk8</description>
+        <groupId>com.skwqy.study</groupId>
+        <artifactId>skwqy-study-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>com.skwqy.study.jdk</artifactId>
+    <name>test for jdk</name>
+    <packaging>jar</packaging>
+    <description>test for jdk8</description>
 
     <!-- https://mvnrepository.com/artifact/cglib/cglib -->
     <dependencies>
