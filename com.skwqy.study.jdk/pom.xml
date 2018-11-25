@@ -34,6 +34,24 @@
             <artifactId>cglib</artifactId>
             <version>3.2.9</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
     </dependencies>
 
 
