@@ -1,4 +1,4 @@
-package com.skwqy.study.pattern.gof.behavior.visitor.impl;
+package com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed;
 
 import com.skwqy.study.pattern.gof.behavior.visitor.IDepartment;
 import com.skwqy.study.pattern.gof.behavior.visitor.IEmployee;

@@ -1,7 +1,7 @@
 package com.skwqy.study.pattern.gof.behavior.visitor;
 
-import com.skwqy.study.pattern.gof.behavior.visitor.impl.FullTimeEmployee;
-import com.skwqy.study.pattern.gof.behavior.visitor.impl.PartTimeEmployee;
+import com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed.FullTimeEmployee;
+import com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed.PartTimeEmployee;
 
 /**
  * visitor：

@@ -2,6 +2,8 @@ package com.skwqy.study.pattern.gof.behavior.visitor.impl;
 
 
 import com.skwqy.study.pattern.gof.behavior.visitor.IDepartment;
+import com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed.FullTimeEmployee;
+import com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed.PartTimeEmployee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

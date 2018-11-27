@@ -1,6 +1,8 @@
 package com.skwqy.study.pattern.gof.behavior.visitor;
 
 import com.skwqy.study.pattern.gof.behavior.visitor.impl.*;
+import com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed.FullTimeEmployee;
+import com.skwqy.study.pattern.gof.behavior.visitor.impl.fixed.PartTimeEmployee;
 
 /**
  * 访问者（Visitor）模式：提供一个作用于某对象结构中的各元素的操作表示，
