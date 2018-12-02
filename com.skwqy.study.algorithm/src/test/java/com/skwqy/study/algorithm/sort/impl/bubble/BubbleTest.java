@@ -1,5 +1,6 @@
-package com.skwqy.study.algorithm.sort.impl;
+package com.skwqy.study.algorithm.sort.impl.bubble;
 
+import com.skwqy.study.algorithm.sort.IIntSort;
 import com.skwqy.study.algorithm.sort.ISort;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,6 +25,10 @@ public class BubbleTest {
     @Autowired
     private ISort sort;
 
+    @Qualifier("bubble4Int")
+    @Autowired
+    private IIntSort intSort;
+
     @Test
     public void testSort(){
         LOG.info(sort.getClass().getName());
@@ -34,5 +39,17 @@ public class BubbleTest {
         Assert.assertEquals(5,integers[2].intValue());
         Assert.assertEquals(8,integers[3].intValue());
         Assert.assertEquals(9,integers[4].intValue());
+    }
+
+    @Test
+    public void testIntSort(){
+        LOG.info(sort.getClass().getName());
+        int[] integers = {5,9,8,1,3};
+        intSort.sort(integers);
+        Assert.assertEquals(1,integers[0]);
+        Assert.assertEquals(3,integers[1]);
+        Assert.assertEquals(5,integers[2]);
+        Assert.assertEquals(8,integers[3]);
+        Assert.assertEquals(9,integers[4]);
     }
 }

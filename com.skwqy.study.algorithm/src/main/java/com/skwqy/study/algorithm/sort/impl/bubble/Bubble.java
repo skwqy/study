@@ -1,5 +1,6 @@
-package com.skwqy.study.algorithm.sort.impl;
+package com.skwqy.study.algorithm.sort.impl.bubble;
 
+import com.skwqy.study.algorithm.sort.impl.AbstractSort;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,7 +15,7 @@ public class Bubble<T extends Comparable<T>> extends AbstractSort<T> {
     @Override
     public void sort(T[] nums) {
         int length = nums.length;
-        boolean hasSorted = false;
+        boolean hasSorted = false;  //
 
         // 从数组最后一个元素开始，最为被比较的对象
         for (int index = length - 1; index > 0 && !hasSorted; index--) {
