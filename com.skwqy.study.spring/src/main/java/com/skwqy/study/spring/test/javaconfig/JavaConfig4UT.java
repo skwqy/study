@@ -13,15 +13,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Created 2018 11 2018/11/17 2:00 PM
  */
 public class JavaConfig4UT {
-    private static final String JAVA_CLASS_PATH = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-
     private static Logger LOG = LoggerFactory.getLogger(JavaConfig4UT.class);
+
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:/spring/spring.xml");
+        ClassPathXmlApplicationContext applicationContext =
+                new ClassPathXmlApplicationContext("classpath:/spring/spring.xml");
         INeAccess neAccess = applicationContext.getBean(INeAccess.class);
         neAccess.access();
-        if (neAccess == null )
-        {
+        if (neAccess == null) {
             System.out.println("is null ");
         }
         LOG.info("Java config test is OK");
