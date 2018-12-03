@@ -19,7 +19,7 @@
     <module>com.skwqy.study.reactor</module>
     <module>com.skwqy.study.pattern</module>
     <module>com.skwqy.study.algorithm</module>
-    
+    <module>com.skwqy.study.leecode</module>
   </modules>
 
   <!-- 定义公共变量 -->  
