@@ -6,7 +6,6 @@ package com.skwqy.study.pattern.gof.structure.bridge2;
  * @author skwqy
  * @since 2016年3月13日
  */
-public interface IColor
-{
+public interface IColor {
     void drawColor();
 }

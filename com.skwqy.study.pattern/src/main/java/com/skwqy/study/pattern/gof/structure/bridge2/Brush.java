@@ -6,17 +6,14 @@ package com.skwqy.study.pattern.gof.structure.bridge2;
  * @author skwqy
  * @since 2016年3月13日
  */
-public abstract class Brush
-{
+public abstract class Brush {
     protected IColor color;
 
-    public Brush(IColor colorIn)
-    {
+    public Brush(IColor colorIn) {
         color = colorIn;
     }
 
-    protected void drawColor()
-    {
+    protected void drawColor() {
         color.drawColor();
     }
 

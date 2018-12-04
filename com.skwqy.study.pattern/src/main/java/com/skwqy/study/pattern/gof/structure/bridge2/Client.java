@@ -11,11 +11,9 @@ import com.skwqy.study.pattern.gof.structure.bridge2.support.RedColor;
  * @author skwqy
  * @since 2016年3月13日
  */
-public class Client
-{
+public class Client {
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         IColor color = new RedColor();
         Brush brush = new BigBrush(color);
         brush.drawLine();

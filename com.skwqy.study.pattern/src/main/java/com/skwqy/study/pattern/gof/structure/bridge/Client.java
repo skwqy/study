@@ -1,6 +1,6 @@
 package com.skwqy.pattern.gof.structure.bridge;
 
-import com.skwqy.study.pattern.gof.structure.bridge.WindowImp;
+import com.skwqy.study.pattern.gof.structure.bridge.IWindowImp;
 import com.skwqy.study.pattern.gof.structure.bridge.support.IconWindow;
 import com.skwqy.study.pattern.gof.structure.bridge.support.LinuxWindowImp;
 
@@ -15,7 +15,7 @@ public class Client
 {
     public static void main(String[] args)
     {
-        WindowImp winIpl = new LinuxWindowImp();
+        IWindowImp winIpl = new LinuxWindowImp();
         IconWindow wind = new IconWindow(winIpl);
         wind.drawBorder();
     }

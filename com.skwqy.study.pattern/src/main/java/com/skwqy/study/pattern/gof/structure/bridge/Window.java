@@ -8,9 +8,9 @@ package com.skwqy.study.pattern.gof.structure.bridge;
  */
 public abstract class Window
 {
-    protected WindowImp winImp;
+    protected IWindowImp winImp;
 
-    public Window(WindowImp winImpIn)
+    public Window(IWindowImp winImpIn)
     {
         winImp = winImpIn;
     }

@@ -1,7 +1,7 @@
 package com.skwqy.study.pattern.gof.structure.bridge.support;
 
 import com.skwqy.study.pattern.gof.structure.bridge.Window;
-import com.skwqy.study.pattern.gof.structure.bridge.WindowImp;
+import com.skwqy.study.pattern.gof.structure.bridge.IWindowImp;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -11,17 +11,14 @@ import org.apache.commons.logging.LogFactory;
  * @author skwqy
  * @since 2016年3月12日
  */
-public class TransientWindow extends Window
-{
+public class TransientWindow extends Window {
     private static final Log LOG = LogFactory.getLog(TransientWindow.class);
 
-    public TransientWindow(WindowImp winImpIn)
-    {
+    public TransientWindow(IWindowImp winImpIn) {
         super(winImpIn);
     }
 
-    public void drawCloseBox()
-    {
+    public void drawCloseBox() {
         LOG.info("普通窗口：渲染开始.......");
         drawRect();
         LOG.info("普通窗口：渲染完成.......");
