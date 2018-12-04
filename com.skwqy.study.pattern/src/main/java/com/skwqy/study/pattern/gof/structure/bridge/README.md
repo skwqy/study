@@ -10,3 +10,7 @@
 
 延伸：由多个以上的变化维度分离开来，通过管理类在组合不同维度的变化，从而防止类层次暴涨
      如果只有二个变化的维度，那么这个管理类可以退化到一个变化的维度中来兼职担当
+
+参考：
+
+1、https://github.com/me115/design_patterns/blob/master/structural_patterns/bridge.rst
