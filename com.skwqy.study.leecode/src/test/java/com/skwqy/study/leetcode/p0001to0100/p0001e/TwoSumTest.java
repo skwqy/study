@@ -1,9 +1,9 @@
-package com.skwqy.study.leecode.p0001to0100.p0001e;
+package com.skwqy.study.leetcode.p0001to0100.p0001e;
 
+import com.skwqy.study.leetcode.p0001to0100.p0001e.TwoSum;
+import com.skwqy.study.leetcode.p0001to0100.p0001e.TwoSum2;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author skwqy

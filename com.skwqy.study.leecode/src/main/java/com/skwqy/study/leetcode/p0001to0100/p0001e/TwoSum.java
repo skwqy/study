@@ -1,4 +1,4 @@
-package com.skwqy.study.leecode.p0001to0100.p0001e;
+package com.skwqy.study.leetcode.p0001to0100.p0001e;
 
 import java.util.HashMap;
 import java.util.Map;
