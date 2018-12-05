@@ -1,4 +1,4 @@
-package com.skwqy.study.leetcode.p0101to0200.p0146h;
+package com.skwqy.study.leetcode.p0100.p0146h;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

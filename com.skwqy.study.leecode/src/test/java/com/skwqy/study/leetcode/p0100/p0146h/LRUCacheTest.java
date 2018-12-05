@@ -1,9 +1,7 @@
-package com.skwqy.study.leetcode.p0101to0200.p0146h;
+package com.skwqy.study.leetcode.p0100.p0146h;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author skwqy

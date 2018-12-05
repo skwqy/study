@@ -1,4 +1,4 @@
-package com.skwqy.study.leetcode.p0001to0100.p0001e;
+package com.skwqy.study.leetcode.p0000.p0001e;
 
 /**
  * 时间复杂度：O(N^2)
