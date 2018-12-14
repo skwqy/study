@@ -3,7 +3,7 @@ package com.skwqy.study.leetcode.p0000.p0006m;
 /**
  * @author skwqy
  * @Created on 2018 12 2018/12/11 10:54 PM
- *
+ * <p>
  * 0   6   C   I
  * 1  57  BD  HJ
  * 2 4 8 A E G K
@@ -19,14 +19,17 @@ public class ZigZag {
         int size = 2 * numRows - 2;
 
         for (int i = 0; i < numRows; ++i) {
-            
-            for (int j = i; j < s.length(); j += size) {
-                res.append(s.substring(j, j + 1));
-                int tmp = j + size - 2 * i;
 
-                // 非首位行
+            for (int j = 0; j + i < s.length(); j += size) {
+                // 添加每个列完整的元素
+                res.append(s.charAt(j + i));
+
+                // 添加每列只有一个元素的元素
+                int tmp = j + size - i;
+
+                // 非首位行则需要添加每列只有一个元素的元素
                 if (i != 0 && i != numRows - 1 && tmp < s.length()) {
-                    res.append(s.substring(tmp, tmp + 1));
+                    res.append(s.charAt(tmp));
                 }
             }
         }
