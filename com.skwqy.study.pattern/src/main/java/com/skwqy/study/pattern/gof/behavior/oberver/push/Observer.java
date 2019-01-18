@@ -7,5 +7,5 @@ public interface Observer
      * 
      * @param state 更新的状态
      */
-    public void update(String state);
+    void update(String state);
 }

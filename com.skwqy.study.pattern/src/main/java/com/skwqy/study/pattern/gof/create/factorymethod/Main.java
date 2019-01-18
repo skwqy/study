@@ -1,4 +1,4 @@
-package com.skwqy.pattern.gof.create.factorymethod;
+package com.skwqy.study.pattern.gof.create.factorymethod;
 
 public class Main
 {

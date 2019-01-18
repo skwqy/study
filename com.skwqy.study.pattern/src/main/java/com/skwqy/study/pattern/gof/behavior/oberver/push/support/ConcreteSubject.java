@@ -1,13 +1,12 @@
 package com.skwqy.study.pattern.gof.behavior.oberver.push.support;
 
-import com.skwqy.pattern.gof.behavior.strategy.support.AdvancedMemberStrategy;
 import com.skwqy.study.pattern.gof.behavior.oberver.push.Subject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class ConcreteSubject extends Subject
 {
-    private static final Log LOG = LogFactory.getLog(AdvancedMemberStrategy.class);
+    private static final Log LOG = LogFactory.getLog(ConcreteSubject.class);
     private String state;
 
     public String getState()

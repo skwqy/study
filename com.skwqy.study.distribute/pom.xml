@@ -10,8 +10,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>6</source>
-                    <target>6</target>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -22,12 +22,23 @@
         <artifactId>skwqy-study-root</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>com.skwqy.study.algorithm</artifactId>
-    <name>design algorithm for skwqy</name>
+    <artifactId>com.skwqy.study.distribute</artifactId>
+    <name>distribute skill for skwqy</name>
     <packaging>jar</packaging>
-    <description>design algorithm for skwqy</description>
+    <description>distribute skill for skwqy</description>
     <dependencies>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>0.11.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.10.0</version>
+        </dependency>
 
     </dependencies>
 </project>

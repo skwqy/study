@@ -20,12 +20,13 @@
     <module>com.skwqy.study.pattern</module>
     <module>com.skwqy.study.algorithm</module>
     <module>com.skwqy.study.leecode</module>
+    <module>com.skwqy.study.distribute</module>
   </modules>
 
   <!-- 定义公共变量 -->  
   <properties>
     <junit.version>4.12</junit.version>
-    <guava.version>19.0</guava.version>
+    <guava.version>26.0-jre</guava.version>
     <springframework.version>5.1.2.RELEASE</springframework.version>
     <slf4japi.version>1.7.25</slf4japi.version>
     <logback.version>1.2.3</logback.version>
