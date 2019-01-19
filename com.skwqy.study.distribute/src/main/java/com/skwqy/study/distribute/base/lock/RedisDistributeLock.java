@@ -12,6 +12,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * 分布式锁
+ *
  * @author skwqy
  * @Created on 2019 01 2019/1/18 10:00 PM
  */
@@ -38,12 +40,22 @@ public class RedisDistributeLock {
         this.redisFactory = redisFactory;
     }
 
+    /**
+     * 加锁，直到加锁成功为止
+     * @throws RedisException
+     */
     public void lock() throws RedisException {
         while (!tryLock()) {
             sleep(500L);
         }
     }
 
+    /**
+     * 加锁，指定时间内加锁不成功就返回
+     * @param timeOut 超时时间
+     * @return 释放加锁成功 true：成功，false：失败
+     * @throws RedisException
+     */
     public boolean lock(long timeOut) throws RedisException {
         long startTime = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
         while (!tryLock()) {
@@ -58,6 +70,13 @@ public class RedisDistributeLock {
         return true;
     }
 
+    /**
+     * 尝试加锁，加锁一次,加锁成功以后，出现以下场景会失效：
+     * 1、主动解锁
+     * 2、加锁的进程挂死
+     * @return 加锁是否成功，true：成功，false：失败
+     * @throws RedisException
+     */
     public boolean tryLock() throws RedisException {
         boolean isGetLock = lockUnblocked(EXPIRE_TIME);
         if (!isGetLock) {
@@ -76,6 +95,13 @@ public class RedisDistributeLock {
         return true;
     }
 
+    /**
+     * 非阻塞加锁,获取不到锁立即返回
+     *
+     * @param expireTime Redis锁超时时间，超过指定时间，其它节点加锁将会成功
+     * @return
+     * @throws RedisException
+     */
     public boolean lockUnblocked(long expireTime) throws RedisException {
         Jedis redis = redisFactory.getRedis();
         if (redis == null) {
@@ -89,6 +115,11 @@ public class RedisDistributeLock {
         }
     }
 
+    /**
+     * 释放锁
+     * @param retryCount 释放次数
+     * @return 释放结果。true：释放成功，false：释放失败
+     */
     public boolean unLock(int retryCount) {
         Future exsitingFuture = atomicRef.getAndSet(null);
         if (exsitingFuture != null) {
@@ -97,11 +128,15 @@ public class RedisDistributeLock {
         return this.unLockUnblocked(retryCount);
     }
 
-
-    public boolean unLockUnblocked(int retryCount) {
+    /**
+     *
+     * @param retryCount
+     * @return
+     */
+    private boolean unLockUnblocked(int retryCount) {
         Jedis redis = redisFactory.getRedis();
         if (redis == null) {
-            //TODO
+            return false;
         }
         try {
             while (retryCount-- > 0) {

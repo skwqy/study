@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.Assert.*;
 
 /**
@@ -28,26 +30,56 @@ public class RedisDistributeLockTest {
     }
 
     @Test
-    public void unLock() throws RedisException {
-        RedisDistributeLock distributeLock = new RedisDistributeLock("serviceName","lockKey",redisFactory);
+    public void testLockAndUnLock() throws RedisException {
+        RedisDistributeLock distributeLock = new RedisDistributeLock("serviceName", "lockKey", redisFactory);
         try {
             distributeLock.lock();
 
             boolean locked = distributeLock.tryLock();
-            LOG.info("locked, locked = {}",locked);
+            LOG.info("locked, locked = {}", locked);
             Assert.assertFalse(locked);
 
             distributeLock.unLock(3);
             locked = distributeLock.tryLock();
-            LOG.info("unlocked, locked = {}",locked);
+            LOG.info("unlocked, locked = {}", locked);
             Assert.assertTrue(locked);
-        }
-        finally {
+        } finally {
             distributeLock.unLock(3);
         }
     }
 
+    /**
+     * 测试，分布式锁是否再不显示释放的情况下会失效，锁失效存在以下两种情况：
+     * 1、显示释放锁
+     * 2、加锁的进程死掉
+     * @throws RedisException
+     */
     @Test
-    public void unLockUnblocked() {
+    public void testLongTimeLock() throws RedisException {
+        RedisDistributeLock distributeLock = new RedisDistributeLock("serviceName", "lockKey", redisFactory);
+        try {
+            distributeLock.lock();
+
+            sleep(20);
+
+            boolean locked = distributeLock.tryLock();
+            LOG.info("locked, locked = {}", locked);
+            Assert.assertFalse(locked);
+
+            distributeLock.unLock(3);
+            locked = distributeLock.tryLock();
+            LOG.info("unlocked, locked = {}", locked);
+            Assert.assertTrue(locked);
+        } finally {
+            distributeLock.unLock(3);
+        }
+    }
+
+    private void sleep(long seconds){
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            LOG.error("sleep interrupted",e);
+        }
     }
 }
