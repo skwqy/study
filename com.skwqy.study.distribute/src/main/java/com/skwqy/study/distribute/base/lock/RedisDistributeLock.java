@@ -1,10 +1,14 @@
 package com.skwqy.study.distribute.base.lock;
 
+import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import redis.clients.jedis.Jedis;
 
 import java.util.UUID;
-import java.util.concurrent.*;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -12,13 +16,13 @@ import java.util.concurrent.atomic.AtomicReference;
  * @Created on 2019 01 2019/1/18 10:00 PM
  */
 public class RedisDistributeLock {
-
     private static final String UNLOCK_LUA = "if redis.call('get',KEYS[1]) == ARGV[1] then return redis.call('del'," +
             "KEYS[1]) else return 0 end";
 
 
     private static final String RENEW_LOCK_LUA = "if redis.call('get',KEYS[1]) == ARGV[1] then return redis.call" +
             "('Expire',KEYS[1],ARGV[2]) else return 0 end";
+    public static final long EXPIRE_TIME = 10L;
 
     private ThreadFactory threadFactory =
             new ThreadFactoryBuilder().setNameFormat("RedisDistributeLock-TimeLock-%d").build();
@@ -27,11 +31,11 @@ public class RedisDistributeLock {
     private AtomicReference<Future> atomicRef = new AtomicReference<>();
     private String lockValue = UUID.randomUUID().toString();
     private final String lockKey;
-    private final IRedisFactory redisFactory = null;
+    private final IRedisFactory redisFactory;
 
     public RedisDistributeLock(String serviceName, String key, IRedisFactory redisFactory) {
         lockKey = serviceName + key;
-        redisFactory = redisFactory;
+        this.redisFactory = redisFactory;
     }
 
     public void lock() throws RedisException {
@@ -55,7 +59,7 @@ public class RedisDistributeLock {
     }
 
     public boolean tryLock() throws RedisException {
-        boolean isGetLock = lockUnblocked(10L);
+        boolean isGetLock = lockUnblocked(EXPIRE_TIME);
         if (!isGetLock) {
             return false;
         }
@@ -102,8 +106,9 @@ public class RedisDistributeLock {
         try {
             while (retryCount-- > 0) {
 
-                Object result = redis.eval(UNLOCK_LUA);
-                if ("1L".equals(result)) {
+                Object result = redis.eval(UNLOCK_LUA, Lists.<String>newArrayList(lockKey),
+                        Lists.newArrayList(lockValue));
+                if (result != null && "1".equals(result.toString())) {
                     return true;
                 }
                 this.sleep(500L);
@@ -120,11 +125,15 @@ public class RedisDistributeLock {
             return false;
         }
         try {
-            Object result = redis.eval(RENEW_LOCK_LUA);
-            return "1L".equals(result);
+            Object result = redis.eval(RENEW_LOCK_LUA, Lists.<String>newArrayList(lockKey),
+                    Lists.newArrayList(lockValue,String.valueOf(EXPIRE_TIME)));
+            if (result != null && "1".equals(result.toString())) {
+                return true;
+            }
         } finally {
             redisFactory.closeRedis(redis);
         }
+        return false;
     }
 
     private void sleep(long milliseconds) {
