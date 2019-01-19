@@ -46,7 +46,7 @@ public class JedisMain {
             argvs.add(VALUE);
 
             Object unLockResult = jedis.eval(UNLOCK_LUA,keys,argvs);
-            if("1".equals(unLockResult.toString())){
+            if(unLockResult != null && "1".equals(unLockResult.toString())){
                 LOG.info("1L");
             }
             LOG.info("unlock result = {}",unLockResult);
