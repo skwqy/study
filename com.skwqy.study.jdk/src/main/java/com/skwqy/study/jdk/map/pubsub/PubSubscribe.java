@@ -1,12 +1,12 @@
 package com.skwqy.study.jdk.map.pubsub;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 缓存，全程无锁
@@ -19,20 +19,21 @@ public class PubSubscribe {
     private static final PubSubscribe INSTANCE = new PubSubscribe();
     private final ConcurrentMap<String, List<IEventListener>> eventCache = new ConcurrentHashMap<>();
 
-    private PubSubscribe(){}
+    private PubSubscribe() {
+    }
 
-    public PubSubscribe getInstance(){
+    public PubSubscribe getInstance() {
         return INSTANCE;
     }
 
-    public void addListener(String eventId, IEventListener listener){
-        List<IEventListener> listeners = eventCache.computeIfAbsent(eventId,k-> new CopyOnWriteArrayList<>());
+    public void addListener(String eventId, IEventListener listener) {
+        List<IEventListener> listeners = eventCache.computeIfAbsent(eventId, k -> new CopyOnWriteArrayList<>());
         listeners.add(listener);
     }
 
-    public void publisher(Event event){
+    public void publisher(Event event) {
         List<IEventListener> listeners = eventCache.get(event.getEventId());
-        for(IEventListener listener : listeners){
+        for (IEventListener listener : listeners) {
             listener.publish(event);
         }
     }
