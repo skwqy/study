@@ -33,8 +33,9 @@ public class CancelTaskFinal implements Runnable {
             }
 
             if(Thread.currentThread().isInterrupted()){
+                // z中断不用任务清除，在执行下一个任务时，线程池会自动清除
                 // 清除中断
-                Thread.interrupted();
+                //Thread.interrupted();
                 LOG.info("task is cancelled");
                 return;
             }

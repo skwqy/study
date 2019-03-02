@@ -13,5 +13,10 @@ public class PrintThreadNameTask implements Runnable {
     @Override
     public void run() {
         LOG.info("threadName = {}",Thread.currentThread().getName());
+        if(Thread.currentThread().isInterrupted()){
+            LOG.info("thread is Interrupted");
+        } else{
+            LOG.info("thread is not Interrupted");
+        }
     }
 }
