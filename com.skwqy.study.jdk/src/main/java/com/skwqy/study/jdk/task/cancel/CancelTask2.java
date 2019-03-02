@@ -19,7 +19,7 @@ public class CancelTask2 implements Runnable {
         int index = 0;
         for (; ; ) {
             LOG.info("index = {}", index++);
-            if(Thread.interrupted()){
+            if(Thread.currentThread().isInterrupted()){
                 LOG.info("task is cancelled");
                 return;
             }

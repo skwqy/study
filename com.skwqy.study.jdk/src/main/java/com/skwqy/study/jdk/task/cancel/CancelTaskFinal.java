@@ -32,7 +32,7 @@ public class CancelTaskFinal implements Runnable {
                 return;
             }
 
-            if(Thread.interrupted()){
+            if(Thread.currentThread().isInterrupted()){
                 LOG.info("task is cancelled");
                 return;
             }
