@@ -33,6 +33,8 @@ public class CancelTaskFinal implements Runnable {
             }
 
             if(Thread.currentThread().isInterrupted()){
+                // 清除中断
+                Thread.interrupted();
                 LOG.info("task is cancelled");
                 return;
             }
